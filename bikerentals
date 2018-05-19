@@ -22,6 +22,18 @@ bike$weekday <- weekdays(bike$datetime[2])
 #or bike$datetime <- as.POSIXct(bike$datetime) 
 #OR 
 #bike$hour <- sapply(bike$datetime,function(x){format(x,"%H")})
+#OR
+#set_up_features <- function(df) {
+ # df$datetime <- strptime(df$datetime, format="%Y-%m-%d %H:%M:%S")
+ # df$hour <- as.factor(df$datetime$hour)
+ # df$wday <- as.factor(df$datetime$wday)
+ # df$month <- as.factor(df$datetime$mon)
+ # df$year <- as.factor(df$datetime$year + 1900)
+  # ... smth else ...
+ # df
+#}
+
+test <- set_up_features(test)
 
 pl1 <- ggplot(bike.working, aes(hours,count)) + geom_point(position=position_jitter(w=1, h=0),alpha= 0.2, aes(color = temp))
 pl1 <- pl1 + scale_color_gradientn(colours = c('dark blue','blue','light blue','light green','yellow','orange','red'))
